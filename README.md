@@ -43,6 +43,13 @@ Jika proyek ini memiliki seeder untuk mengisi data awal, jalankan seeder:
 ```bash
 php artisan db:seed
 ```
+
+Storage Link
+Lakukan storage link terlebih dahulu dengan menuliskan ini di terminal
+```bash
+php artisan storage:link
+```
+
 Menjalankan Proyek
 Jalankan server pengembangan lokal: 
 ```

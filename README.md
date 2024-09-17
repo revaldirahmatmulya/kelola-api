@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Proyek API Laravel
+Panduan ini akan membantu Anda dalam menginstal dan menjalankan proyek API Laravel ini di perangkat Anda, serta mengaksesnya menggunakan Ngrok.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Clone Repository
+Clone repositori ini ke perangkat Anda menggunakan Git: 
+```bash
+git clone https://github.com/username/repository-name.git
+```
 
-## About Laravel
+Pindah ke direktori proyek: 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```bash
+cd repository-name
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalasi Dependensi
+Instal dependensi proyek menggunakan Composer: composer install
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Konfigurasi Lingkungan
+Salin file konfigurasi .env.example ke .env: 
 
-## Learning Laravel
+```bash
+cp .env.example .env
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Atur konfigurasi di file .env sesuai kebutuhan (misalnya, database, aplikasi key).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Generate Key Aplikasi
+Generate key aplikasi Laravel: 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+php artisan key:generate
+```
 
-## Laravel Sponsors
+Migrasi Database
+Jalankan migrasi database untuk menyiapkan skema: 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+php artisan migrate
+```
+Seed Database
+Jika proyek ini memiliki seeder untuk mengisi data awal, jalankan seeder: 
+```bash
+php artisan db:seed
+```
+Menjalankan Proyek
+Jalankan server pengembangan lokal: 
+```
+php artisan serve
+```
+Secara default, server akan berjalan di http://localhost:8000.
 
-### Premium Partners
+## Mengakses Proyek Menggunakan Ngrok
+Install Ngrok
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Jika Ngrok belum terpasang, unduh dan instal Ngrok dari situs Ngrok sesuai dengan sistem operasi Anda.
 
-## Contributing
+Jalankan Ngrok
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Jalankan Ngrok untuk meneruskan trafik dari port lokal (misalnya port 8000): 
+```
+ngrok http 8000
+```
+Ngrok akan memberikan URL publik yang dapat digunakan untuk mengakses API Anda dari luar jaringan lokal.
 
-## Code of Conduct
+## Akses API
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Gunakan URL publik yang diberikan oleh Ngrok untuk mengakses API Anda. Misalnya, jika Ngrok memberikan URL https://abcdefg12345.ngrok.io, Anda dapat mengakses API Anda di https://abcdefg12345.ngrok.io. 
 
-## Security Vulnerabilities
+Copy URL API yang sudah diberikan Ngrok lalu Paste URL tersebut pada file Api.js pada folder utils di project React (React-kelola)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Catatan Tambahan
+Pastikan bahwa konfigurasi database dan variabel lingkungan di .env sudah benar.
+Jika Anda menggunakan database yang memerlukan setup khusus (seperti SQLite, MySQL, dll.), pastikan bahwa konfigurasi tersebut sesuai dan database sudah siap.
+Periksa log aplikasi jika terjadi masalah dengan menjalankan perintah: tail -f storage/logs/laravel.log
